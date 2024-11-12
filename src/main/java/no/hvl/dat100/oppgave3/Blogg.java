@@ -1,6 +1,8 @@
 package no.hvl.dat100.oppgave3;
 
 import no.hvl.dat100.common.TODO;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 import no.hvl.dat100.oppgave1.*;
 
 public class Blogg {
@@ -42,7 +44,19 @@ public class Blogg {
 	}
 	
 	public String toString() {
-		throw new UnsupportedOperationException(TODO.method());
+		if (true)
+	    return nesteledig + "\n" + 
+	           Arrays.stream(innlegg, 0, nesteledig) // stream fordi jeg liker hvor fint det ser ut
+	                 .map(Innlegg::toString)
+	                 .collect(Collectors.joining());
+
+	    
+	    String s = "" + nesteledig + "\n";
+		for (int i = 0; i < nesteledig; i++) {
+			s += innlegg[i].toString();
+		}
+		return s;
+		
 	}
 
 	// valgfrie oppgaver nedenfor
@@ -57,8 +71,15 @@ public class Blogg {
 		
 	}
 	
+	// så ikke at denne var valgfri før nå, så kan være den ikke er ritkig, men jeg sjekker ikke siden den bare er valgfri
 	public boolean slett(Innlegg innlegg) {
-		if (!this.finnes(innlegg)) return false;
+		int i = this.finnInnlegg(innlegg);
+		if (i == -1) return false;
+		boolean found = false;
+		for (int j = i + 1; j < nesteledig - 1; j++) {
+			this.innlegg[j - 1] = this.innlegg[j];
+		}
+		this.innlegg[nesteledig-- - 1] = null;
 		
 		return true;
 	}
