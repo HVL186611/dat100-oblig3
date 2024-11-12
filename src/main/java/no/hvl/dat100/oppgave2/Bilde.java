@@ -27,8 +27,10 @@ public class Bilde extends Tekst {
 
 	// Metoden nedenfor er kun for valgfri oppgave 6
 	public String toHTML() {
-		
-		throw new UnsupportedOperationException(TODO.method());
-				
-	}
+	    return super.toHTML()
+	        .replace(c("User content placeholder"), p(getBruker(), "highlight"))
+	        .replace(c("Date content placeholder"), p(getDato(), "content"))
+	        .replace(c("Likes count placeholder"), p(Integer.toString(getLikes()), "content"))
+	        .replace(c("Content placeholder"), img("https://example.com/image.jpg", "image"));
+	}		
 }
