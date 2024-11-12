@@ -44,19 +44,18 @@ public class Blogg {
 	}
 	
 	public String toString() {
-		if (true)
 	    return nesteledig + "\n" + 
 	           Arrays.stream(innlegg, 0, nesteledig) // stream fordi jeg liker hvor fint det ser ut
 	                 .map(Innlegg::toString)
 	                 .collect(Collectors.joining());
 
-	    
+	    /* loop versjon (mer effektiv men ikke like *fancy*)
 	    String s = "" + nesteledig + "\n";
 		for (int i = 0; i < nesteledig; i++) {
 			s += innlegg[i].toString();
 		}
 		return s;
-		
+	    */
 	}
 
 	// valgfrie oppgaver nedenfor
