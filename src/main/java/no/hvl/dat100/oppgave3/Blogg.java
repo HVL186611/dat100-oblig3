@@ -5,42 +5,40 @@ import no.hvl.dat100.oppgave1.*;
 
 public class Blogg {
 
-	// TODO: objektvariable 
+	private Innlegg innlegg[];
+	private int nesteledig = 0;
 
 	public Blogg() {
-		throw new UnsupportedOperationException(TODO.constructor("Blogg"));
+		this(20);
 	}
 
 	public Blogg(int lengde) {
-		throw new UnsupportedOperationException(TODO.constructor("Blogg"));
+		innlegg = new Innlegg[lengde];
 	}
 
-	public int getAntall() {
-		throw new UnsupportedOperationException(TODO.method());
-	}
+	public int getAntall() {  return nesteledig;  }
 	
 	public Innlegg[] getSamling() {
-		throw new UnsupportedOperationException(TODO.method());
-
+		return innlegg;
 	}
 	
 	public int finnInnlegg(Innlegg innlegg) {
-
-		throw new UnsupportedOperationException(TODO.method());
+		for (int i = 0; i < nesteledig; i++)
+			if (innlegg.erLik(this.innlegg[i]))
+				return i;
+		return -1;
 	}
 
 	public boolean finnes(Innlegg innlegg) {
-		throw new UnsupportedOperationException(TODO.method());
+		return (this.finnInnlegg(innlegg) >= 0) ? true : false;
 	}
 
-	public boolean ledigPlass() {
-		throw new UnsupportedOperationException(TODO.method());
-
-	}
+	public boolean ledigPlass() {  return innlegg.length != nesteledig;  }
 	
 	public boolean leggTil(Innlegg innlegg) {
-
-		throw new UnsupportedOperationException(TODO.method());
+		if (!this.ledigPlass()) return false;
+		this.innlegg[nesteledig++] = innlegg;
+		return true;
 	}
 	
 	public String toString() {
@@ -60,8 +58,9 @@ public class Blogg {
 	}
 	
 	public boolean slett(Innlegg innlegg) {
+		if (!this.finnes(innlegg)) return false;
 		
-		throw new UnsupportedOperationException(TODO.method());
+		return true;
 	}
 	
 	public int[] search(String keyword) {
