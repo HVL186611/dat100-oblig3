@@ -59,10 +59,5 @@ public class LesBlogg {
             System.err.println("Error reading file: " + e.getMessage());
             return null;
         }
-        /*
-         * åååååå fyyyy
-         * programmering er gøy helt til du begynner
-         * med lesing og skriving av filer
-         */
     }
 }
